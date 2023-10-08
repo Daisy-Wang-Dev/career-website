@@ -16,12 +16,13 @@
 </head>
 
 <body>
-     <main class="container">
+     <main>
+       {% include "nav.html" %}
       <header class="header">
         <h1 class="text-center mt-2 mb-4">The Career Website</h1>
       </header>
     
-      <section class="hero">
+      <section class="container">
         <img class="img-fluid" id="banner" src="https://career-website--daiszws19.repl.co/static/banner.jpg">
         <h2 class="text-center mt-4 mb-2">About</h2>
         <p class="lead"> 
@@ -29,18 +30,21 @@
          </p>
       </section>
     
-      <section>
+      <section class="container">
         <h2 class="mt-4 mb-2">Job Openings</h2>
         <div 
            {% for job in jobs %}
             <div class="border-bottom p-2 row">
-              <div class="col-9">
+              <div class="col-11">
                   <h4>{{job["title"]}}</h4>
                   <p class="mb-0"> Location: {{job["location"]}}</p>
-                  <p class="mb-0">${{job["salary"]}}/ yr</p> 
+                  {% if job["salary"] %}
+                    <p class="mb-0">${{job["salary"]}}/ yr</p> 
+                  {% endif %}
               </div>
-              <div class="col-3">
-                <button type="button" class="btn btn-outline-primary">Apply</button>
+              <div class="col-1">
+                <button type="button" class="btn btn-outline-primary">
+                  Apply</button>
               </div>
             </div> 
            {% endfor %}
